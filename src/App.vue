@@ -5,7 +5,7 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <template>
   <div id ="app">
-    <h1>Hello SIBONG</h1>
+    <h1>Hello 시봉쓰</h1>
   </div>
 </template>
 
