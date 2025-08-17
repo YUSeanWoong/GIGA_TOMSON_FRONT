@@ -1,143 +1,135 @@
 <template>
-  <div class="page">
-    <div class="report-card">
-      <!-- 상단바 -->
-      <header class="topbar">
-        <button @click="noop">←</button>
-        <h1 class="title">GIGA CHAD</h1>
-        <button @click="noop">✕</button>
-      </header>
-
-      <!-- 날짜 선택 -->
-      <div class="date-select">
-        <span>{{ now }}</span>
-        <select v-model="date">
-          <option>2025-08-17</option>
-          <option>2025-08-16</option>
-        </select>
-      </div>
-
-      <!-- 안내 -->
-      <h2 class="subtitle">오늘 한 일을 기록해라.</h2>
-
-      <!-- 활동 리스트 -->
-      <div class="activities">
-        <div v-for="(task, i) in tasks" :key="i" class="task">
-          <button class="name">{{ task.name }}</button>
-          <span class="time">{{ task.hour }}시간 {{ task.min }}분</span>
-          <button class="delete" @click="removeTask(i)">🗑</button>
-        </div>
-      </div>
-
-      <!-- 활동 추가 -->
-      <button class="add" @click="addTask">＋</button>
-
-      <!-- 완료 버튼 -->
-      <button class="complete" @click="noop">완료</button>
+  <div class="container">
+    <!-- 상단 바 -->
+    <div class="topbar">
+      <button @click="goBack">⟵</button>
+      <span>GIGA CHAD</span>
+      <button @click="closePage">✖</button>
     </div>
 
-    <!-- 하단 네비 -->
-    <nav class="bottom-nav">
+    <!-- 이미지 및 좌우 버튼 -->
+    <div class="image-container">
+      <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button>
+      <img :src="images[currentIndex]" alt="Giga Chad" class="chad-image" />
+      <button @click="nextImage" class="nav-btn right" :disabled="currentIndex === images.length - 1">›</button>
+    </div>
+
+    <!-- 설명 텍스트 -->
+    <div class="description">
+      <p>{{ descriptions[currentIndex] }}</p>
+    </div>
+
+    <!-- 하단 버튼 -->
+    <div class="footer-buttons">
       <button>캘린더</button>
-      <button class="active">보고</button>
+      <button>보고</button>
       <button>조언</button>
       <button>상점</button>
-    </nav>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const now = new Date().toLocaleTimeString()
-const date = ref('2025-08-17')
-const tasks = ref([
-  { name: '공부', hour: 0, min: 1 },
-  { name: '휴식', hour: 0, min: 1 },
-  { name: '독서', hour: 0, min: 1 },
+// 이미지 여러 개 import
+import gigaChad1 from '../images/GIGA_TOMSON.png'
+import gigaChad2 from '../images/GIGA_TOMSON2.jpg'
+import gigaChad3 from '../images/GIGA_TOMSON3.jpg'
+
+// 현재 이미지 인덱스
+const currentIndex = ref(0)
+
+// 이미지 배열
+const images = ref([gigaChad1, gigaChad2, gigaChad3])
+
+// 이미지 설명 배열 (이미지 순서에 맞춰)
+const descriptions = ref([
+  "첫 번째 GIGA CHAD: 오늘도 워밍업은 충분히 했는가?",
+  "두 번째 GIGA CHAD: 집중력이 필요할 땐 잠깐 숨을 고르자.",
+  "세 번째 GIGA CHAD: 끝까지 밀어붙이면 진짜 기가챠드."
 ])
 
-const addTask = () => {
-  tasks.value.push({ name: '새 활동', hour: 0, min: 1 })
+// 이전 이미지
+const prevImage = () => {
+  if (currentIndex.value > 0) currentIndex.value--
 }
-const removeTask = (i) => tasks.value.splice(i, 1)
 
-const noop = () => {}
+// 다음 이미지
+const nextImage = () => {
+  if (currentIndex.value < images.value.length - 1) currentIndex.value++
+}
+
+// 상단 버튼 기능
+const goBack = () => alert("뒤로가기 클릭")
+const closePage = () => alert("닫기 클릭")
 </script>
 
 <style scoped>
-.page {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  background: #f4f5f7;
+.container {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-/* 카드 */
-.report-card {
-  flex: 1;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  margin: 16px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 상단바 */
+/* 상단 바 */
 .topbar {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 16px;
-}
-.topbar button { background:none; border:none; font-size:18px; cursor:pointer; }
-.title { font-size: 20px; font-weight: 800; }
-
-/* 날짜 */
-.date-select {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom: 12px;
-  font-size:14px; color:#444;
-}
-.date-select select {
-  border:1px solid #ccc; border-radius:8px; padding:4px 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
 }
 
-/* 안내 */
-.subtitle {
-  text-align:center;
-  font-weight:700;
-  margin: 16px 0;
+/* 이미지 영역 */
+.image-container {
+  position: relative;
+  margin: 20px 0;
+}
+.chad-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
 }
 
-/* 활동 */
-.activities { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
-.task {
-  display:flex; justify-content:space-between; align-items:center;
-  border:1px solid #ddd; border-radius:10px; padding:10px;
+/* 좌우 버튼 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.1);
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: 0.2s;
 }
-.task .name { border:none; background:#fafafa; border-radius:6px; padding:6px 10px; }
-.task .delete { background:none; border:none; cursor:pointer; }
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.nav-btn.left { left: -10px; }
+.nav-btn.right { right: -10px; }
 
-/* 버튼 */
-.add, .complete {
-  margin-top: 12px;
-  border:none; border-radius:12px;
-  padding:12px;
-  font-weight:700;
-  cursor:pointer;
+/* 설명 텍스트 */
+.description {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.add { background:#fafafa; border:1px dashed #aaa; font-size:20px; }
-.complete { background:#111; color:#fff; }
 
-/* 하단 네비 */
-.bottom-nav {
-  display:grid; grid-template-columns: repeat(4,1fr);
-  border-top:1px solid #ddd;
+/* 하단 버튼 */
+.footer-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
 }
-.bottom-nav button {
-  padding:12px 0; border:none; background:#fff;
-  font-size:14px; cursor:pointer;
+.footer-buttons button {
+  padding: 10px 15px;
+  cursor: pointer;
 }
-.bottom-nav .active { font-weight:700; color:#111; }
 </style>
+
