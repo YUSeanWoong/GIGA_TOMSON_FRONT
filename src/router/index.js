@@ -7,8 +7,8 @@ import AdvicePage from '../pages/Advice.vue'
 const routes = [
   { path: '/', name: 'Login', component: LoginPage },
   { path: '/signup', name: 'SignUp', component: SignUpPage },
-  { path: '/Report', name: 'Report', component: ReportPage },
-  { path: '/Advice', name: 'Advice', component: AdvicePage }
+  { path: '/report', name: 'Report', component: ReportPage },
+  { path: '/advice', name: 'Advice', component: AdvicePage }
 ]
 
 export default createRouter({

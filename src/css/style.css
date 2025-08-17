@@ -225,3 +225,91 @@ input {
   font-size:14px; cursor:pointer;
 }
 .bottom-nav .active { font-weight:700; color:#111; }
+
+/* 상단 바 */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 이미지 영역 */
+.image-container {
+  position: relative;
+  margin: 20px 0;
+}
+.chad-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+/* 좌우 버튼 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.1);
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.nav-btn.left { left: -10px; }
+.nav-btn.right { right: -10px; }
+
+/* 설명 텍스트 */
+.description {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.nav-btn:first-child { left: -30px; }
+.nav-btn:last-child { right: -30px; }
+
+.description {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 하단 버튼 */
+.footer-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.footer-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}

@@ -6,7 +6,7 @@
       <h1 class="title">로그인 해라.</h1>
 
       <div class="avatar">
-        <img src="../images/GIGI_TOMSON.png" alt="GIGI_TOMSON" />
+        <img src="../images/GIGA_TOMSON.png" alt="GIGA_TOMSON" />
       </div>
 
       <form class="form" @submit.prevent>

@@ -35,7 +35,7 @@ export default {
     return {
       currentIndex: 0,
       images: [
-        require('../assets/giga_chad.png')  // 여기에 네 이미지 경로 넣어
+        require('../images/GIGA_TOMSON.png')  // 여기에 네 이미지 경로 넣어
       ],
       descriptions: [
         "10분? 그건 워밍업이지 공부가 아냐. 책 좀 펼쳤어 '오늘도 해봤다!' 이러는 건 치킨두 꺼내고 치킨 다 먹었다고 우기는 거랑 똑같다."
@@ -60,57 +60,4 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.container {
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-}
-
-.image-container {
-  position: relative;
-  margin: 20px 0;
-}
-
-.chad-image {
-  width: 100%;
-  max-width: 300px;
-}
-
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 2em;
-  cursor: pointer;
-}
-
-.nav-btn:first-child { left: -30px; }
-.nav-btn:last-child { right: -30px; }
-
-.description {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.footer-buttons button {
-  margin: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-</style>
 
