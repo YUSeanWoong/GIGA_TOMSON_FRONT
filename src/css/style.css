@@ -79,7 +79,7 @@
   min-height: clamp(38px, 4.8vw, 50px);
   font-size: clamp(13px, 1.7vw, 16px);
 }
-@media (min-width: 768px){           /* iPad 세로 포함 */
+@media (min-width: 768px){           /* iPad 세로 포함 */f
   .links{ grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -210,14 +210,26 @@ input {
 
 /* 버튼 */
 .add, .complete {
+  width: 100%;            /* ✅ 버튼을 카드 폭에 맞게 길쭉하게 */
+  display: block;         /* ✅ 인라인 성격 없애고 블록화 */
   margin-top: 12px;
-  border:none; border-radius:12px;
-  padding:12px;
-  font-weight:700;
-  cursor:pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
 }
-.add { background:#fafafa; border:1px dashed #aaa; font-size:20px; }
-.complete { background:#111; color:#fff; }
+
+.add {
+  background: #fafafa;
+  border: 1px dashed #aaa;
+}
+
+.complete {
+  background: #111;
+  color: #fff;
+}
 
 /* 하단 네비 */
 .bottom-nav {
