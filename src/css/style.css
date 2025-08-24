@@ -1,9 +1,8 @@
 /* 레이아웃 */
 .page{
-  min-height: 100svh;
+  min-height: 95svh;
   display: grid;
   place-items: center;
-  padding: 16px;
   background: #f4f5f7;
 }
 
@@ -98,6 +97,7 @@
 /* iPad Pro(1024px+)에서 더 시원하게 */
 @media (min-width: 1024px){
   .login-card{ width: min(100%, 640px); }
+  .inner-card{ width: min(100%, 640px); }
   .avatar img{ width: 200px; }
 }
 
@@ -161,13 +161,6 @@ input {
   cursor: pointer;
 }
 
-.page {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  background: #f4f5f7;
-}
-
 /* 카드 */
 .report-card {
   flex: 1;
@@ -178,6 +171,7 @@ input {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  width: min(100%, clamp(360px, 48vw, 720px));
 }
 
 /* 상단바 */
@@ -323,3 +317,172 @@ input {
   padding: 10px 15px;
   cursor: pointer;
 }
+
+
+/* 카드 */
+.report-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  margin: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단바 */
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.topbar button { background:none; border:none; font-size:18px; cursor:pointer; }
+.title { font-size: 20px; font-weight: 800; }
+
+/* 날짜 */
+.date-select { margin-bottom: 12px; }
+.date-select select {
+  border:1px solid #ccc; border-radius:8px; padding:6px 10px;
+}
+
+/* 타이틀 */
+.subtitle {
+  text-align:center;
+  font-weight:700;
+  margin: 16px 0;
+}
+
+/* 활동 */
+.activities { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+.task {
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid #ddd; border-radius:10px; padding:10px;
+}
+.task .delete {
+  background:none; border:none; cursor:pointer;
+}
+
+/* 버튼 */
+.add, .complete {
+  margin-top: 12px;
+  border:none; border-radius:12px;
+  padding:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.add { background:#fafafa; border:1px dashed #aaa; }
+.complete { background:#111; color:#fff; }
+
+
+/* 월 */
+.month-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.month-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+/* 요일 */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+}
+.weekday {
+  padding: 5px 0;
+}
+
+/* 날짜 */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+.day-cell {
+  height: 60px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  font-size: 14px;
+  padding-top: 5px;
+}
+.emoji {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* 공통!!!!!!!!!!!!손대면 죽ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ여버릴꺼야!!!!!!!!!!!!!!!!!!!!!!!! */
+.inner-card {
+  width: min(100%, clamp(360px, 48vw, 720px));
+  height: 900px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  padding: clamp(20px, 4vw, 40px);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.topbar .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.footer-menu  {
+  position: absolute;
+  bottom: 0;        /* ✅ 카드의 하단에 고정 */
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  border-top: 1px solid #ddd;
+}
+
+.footer-menu button {
+  padding: 20px 0;
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  border-left: 1px solid #ddd; /* ✅ 각 칸 구분선 */
+}
+
+.footer-menu button:first-child {
+  border-left: none; /* 첫 번째 칸은 왼쪽 구분선 제거 */
+}
+
+.footer-menu button:hover {
+  background: #c6e5ff;
+}
+
+/* 본문 영역 (변하는 부분) */
+.sub_cont {
+  flex: 0.95;              /* header/ footer 제외한 남은 공간 차지 */
+  min-height: 0;        /* ✅ flexbox overflow 계산 정확히 되도록 */
+  overflow-y: auto;     /* ✅ 내용이 넘치면 스크롤 */
+  padding: 20px; 
+}
+/*========== 공통 END========== */

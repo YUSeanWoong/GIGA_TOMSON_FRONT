@@ -1,12 +1,5 @@
 <template>
-  <div class="container">
-    <!-- 상단 바 -->
-    <div class="topbar">
-      <button @click="goBack">⟵</button>
-      <span>GIGA CHAD</span>
-      <button @click="closePage">✖</button>
-    </div>
-
+  <div>
     <!-- 이미지 및 좌우 버튼 -->
     <div class="image-container">
       <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button>
@@ -18,14 +11,6 @@
     <div class="description">
       <p>{{ descriptions[currentIndex] }}</p>
     </div>
-
-    <!-- 하단 버튼 -->
-    <div class="footer-buttons">
-      <button>캘린더</button>
-      <button>보고</button>
-      <button>조언</button>
-      <button>상점</button>
-    </div>
   </div>
 </template>
 
@@ -33,9 +18,9 @@
 import { ref } from 'vue'
 
 // 이미지 여러 개 import
-import gigaChad1 from '../images/GIGA_TOMSON.png'
-import gigaChad2 from '../images/GIGA_TOMSON2.jpg'
-import gigaChad3 from '../images/GIGA_TOMSON3.jpg'
+import gigaChad1 from '../../images/GIGA_TOMSON.png'
+import gigaChad2 from '../../images/GIGA_TOMSON2.jpg'
+import gigaChad3 from '../../images/GIGA_TOMSON3.jpg'
 
 // 현재 이미지 인덱스
 const currentIndex = ref(0)
