@@ -1,68 +1,138 @@
 <template>
-  <div class="container">
-    <!-- 상단 바 -->
-    <div class="topbar">
-      <button @click="goBack">⟵</button>
-      <span>GIGA CHAD</span>
-      <button @click="closePage">✖</button>
+  <div class="page">
+    <div class="report-card">
+      <!-- 상단바 -->
+      <header class="topbar">
+        <button @click="noop">←</button>
+        <h1 class="title">GIGA CHAD</h1>
+        <button @click="noop">✕</button>
+      </header>
+
+      <!-- 날짜 선택 -->
+      <div class="date-select">
+        <select v-model="date">
+          <option>2025-08-17</option>
+          <option>2025-08-16</option>
+        </select>
+      </div>
+
+      <!-- 타이틀 -->
+      <h2 class="subtitle">오늘 한 일을 기록해라.</h2>
+
+      <!-- 활동 리스트 -->
+      <div class="activities">
+        <div v-for="(task, i) in tasks" :key="i" class="task">
+          <span class="name">{{ task.name }}</span>
+          <span class="time">{{ task.hour }}시간 {{ task.min }}분</span>
+          <button class="delete" @click="removeTask(i)">🗑</button>
+        </div>
+      </div>
+
+      <!-- 활동 추가 -->
+      <button class="add" @click="addTask">+ 활동 추가</button>
+
+      <!-- 완료 버튼 -->
+      <button class="complete" @click="noop">완료</button>
     </div>
 
-    <!-- 이미지 및 좌우 버튼 -->
-    <div class="image-container">
-      <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button>
-      <img :src="images[currentIndex]" alt="Giga Chad" class="chad-image" />
-      <button @click="nextImage" class="nav-btn right" :disabled="currentIndex === images.length - 1">›</button>
-    </div>
-
-    <!-- 설명 텍스트 -->
-    <div class="description">
-      <p>{{ descriptions[currentIndex] }}</p>
-    </div>
-
-    <!-- 하단 버튼 -->
-    <div class="footer-buttons">
+    <!-- 하단 네비 -->
+    <nav class="bottom-nav">
       <button>캘린더</button>
-      <button>보고</button>
+      <button class="active">보고</button>
       <button>조언</button>
       <button>상점</button>
-    </div>
+    </nav>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-// 이미지 여러 개 import
-import gigaChad1 from '../images/GIGA_TOMSON.png'
-import gigaChad2 from '../images/GIGA_TOMSON2.jpg'
-import gigaChad3 from '../images/GIGA_TOMSON3.jpg'
-
-// 현재 이미지 인덱스
-const currentIndex = ref(0)
-
-// 이미지 배열
-const images = ref([gigaChad1, gigaChad2, gigaChad3])
-
-// 이미지 설명 배열 (이미지 순서에 맞춰)
-const descriptions = ref([
-  "첫 번째 GIGA CHAD: 오늘도 워밍업은 충분히 했는가?",
-  "두 번째 GIGA CHAD: 집중력이 필요할 땐 잠깐 숨을 고르자.",
-  "세 번째 GIGA CHAD: 끝까지 밀어붙이면 진짜 기가챠드."
+const date = ref('2025-08-17')
+const tasks = ref([
+  { name: '공부', hour: 0, min: 1 },
+  { name: '휴식', hour: 0, min: 1 },
+  { name: '독서', hour: 0, min: 1 },
 ])
 
-// 이전 이미지
-const prevImage = () => {
-  if (currentIndex.value > 0) currentIndex.value--
+const addTask = () => {
+  tasks.value.push({ name: '새 활동', hour: 0, min: 1 })
 }
+const removeTask = (i) => tasks.value.splice(i, 1)
 
-// 다음 이미지
-const nextImage = () => {
-  if (currentIndex.value < images.value.length - 1) currentIndex.value++
-}
-
-// 상단 버튼 기능
-const goBack = () => alert("뒤로가기 클릭")
-const closePage = () => alert("닫기 클릭")
+const noop = () => {}
 </script>
 
+<style scoped>
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: #f4f5f7;
+}
 
+/* 카드 */
+.report-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  margin: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단바 */
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.topbar button { background:none; border:none; font-size:18px; cursor:pointer; }
+.title { font-size: 20px; font-weight: 800; }
+
+/* 날짜 */
+.date-select { margin-bottom: 12px; }
+.date-select select {
+  border:1px solid #ccc; border-radius:8px; padding:6px 10px;
+}
+
+/* 타이틀 */
+.subtitle {
+  text-align:center;
+  font-weight:700;
+  margin: 16px 0;
+}
+
+/* 활동 */
+.activities { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+.task {
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid #ddd; border-radius:10px; padding:10px;
+}
+.task .delete {
+  background:none; border:none; cursor:pointer;
+}
+
+/* 버튼 */
+.add, .complete {
+  margin-top: 12px;
+  border:none; border-radius:12px;
+  padding:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.add { background:#fafafa; border:1px dashed #aaa; }
+.complete { background:#111; color:#fff; }
+
+/* 하단 네비 */
+.bottom-nav {
+  display:grid; grid-template-columns: repeat(4,1fr);
+  border-top:1px solid #ddd;
+}
+.bottom-nav button {
+  padding:12px 0; border:none; background:#fff;
+  font-size:14px; cursor:pointer;
+}
+.bottom-nav .active { font-weight:700; color:#111; }
+</style>
