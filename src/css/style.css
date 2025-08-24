@@ -200,13 +200,52 @@ input {
 }
 
 /* 활동 */
-.activities { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
-.task {
-  display:flex; justify-content:space-between; align-items:center;
-  border:1px solid #ddd; border-radius:10px; padding:10px;
+.activities {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 500px; /* 고정 높이 */
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
 }
-.task .name { border:none; background:#fafafa; border-radius:6px; padding:6px 10px; }
-.task .delete { background:none; border:none; cursor:pointer; }
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  gap: 10px; /* 아이템 사이 기본 간격 */
+}
+
+/* name 영역 고정 폭 */
+.task .name {
+  flex: 0 0 120px; /* 최소 0, 최대 0, 고정 120px */
+  font-weight: 500;
+  white-space: nowrap; /* 글자 줄바꿈 방지 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 글자가 길면 ... 처리 */
+}
+
+/* time 영역은 flex-grow로 남은 공간 차지 */
+.task .time {
+  flex: 1; /* 나머지 공간 채우기 */
+  color: #666;
+}
+
+/* 삭제 버튼은 고정 */
+.task .delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 
 /* 버튼 */
 .add, .complete {
@@ -362,16 +401,6 @@ input {
   text-align:center;
   font-weight:700;
   margin: 16px 0;
-}
-
-/* 활동 */
-.activities { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
-.task {
-  display:flex; justify-content:space-between; align-items:center;
-  border:1px solid #ddd; border-radius:10px; padding:10px;
-}
-.task .delete {
-  background:none; border:none; cursor:pointer;
 }
 
 /* 버튼 */

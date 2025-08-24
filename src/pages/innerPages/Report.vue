@@ -11,7 +11,7 @@
   <h2 class="subtitle">오늘 한 일을 기록해라.</h2>
 
   <!-- 활동 리스트 -->
-  <div class="activities">
+  <div class="activities" ref="activitiesContainer">
     <div v-for="(task, i) in tasks" :key="i" class="task">
       <span class="name">{{ task.name }}</span>
       <span class="time">{{ task.hour }}시간 {{ task.min }}분</span>
@@ -24,11 +24,10 @@
 
   <!-- 완료 버튼 -->
   <button class="complete" @click="noop">완료</button>
-   
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 
 const date = ref('2025-08-17')
 const tasks = ref([
@@ -37,11 +36,16 @@ const tasks = ref([
   { name: '독서', hour: 0, min: 1 },
 ])
 
-const addTask = () => {
+const activitiesContainer = ref(null)
+
+const addTask = async () => {
   tasks.value.push({ name: '새 활동', hour: 0, min: 1 })
+  await nextTick()
+  // 스크롤을 최하단으로 이동
+  activitiesContainer.value.scrollTop = activitiesContainer.value.scrollHeight
 }
+
 const removeTask = (i) => tasks.value.splice(i, 1)
 
 const noop = () => {}
 </script>
-
