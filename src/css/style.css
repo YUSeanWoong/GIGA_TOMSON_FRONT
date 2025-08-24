@@ -201,12 +201,11 @@ input {
 
 /* 활동 */
 .activities {
-  flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 500px; /* 고정 높이 */
+  height: 490px; /* 고정 높이 */
   border: 1px solid #d3d3d3;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
