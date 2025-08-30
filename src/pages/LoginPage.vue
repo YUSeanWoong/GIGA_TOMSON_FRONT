@@ -25,7 +25,7 @@
         </div>
 
         <button type="button" class="sns">SNS 로그인</button>
-        <button type="button" class="kakao">💬 카카오로 시작</button>
+        <button type="button" class="kakao" @click="onKakaoLogin">💬 카카오로 시작</button>
       </form>
     </div>
   </div>
@@ -33,9 +33,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useLoginPage } from '../js/LoginPage.js'
+import { useLoginPage} from '../js/LoginPage.js'
 const id = ref(''); const pw = ref(''); const auto = ref(false)
-const { goSignUp } = useLoginPage()
+const { goSignUp, onKakaoLogin } = useLoginPage()
 const noop = () => {}
+
 
 </script>
