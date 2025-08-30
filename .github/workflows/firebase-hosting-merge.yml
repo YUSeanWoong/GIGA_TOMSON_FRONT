@@ -23,5 +23,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GIGATOMSON }}
           channelId: live
           projectId: gigatomson
-          entryPoint: ./GIGA_TOMSON_FRONT
           
