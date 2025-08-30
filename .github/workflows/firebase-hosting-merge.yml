@@ -12,6 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
+        env:
+         VITE_API_BASE : ${{secrets.VITE_API_BASE}}
+         VITE_KAKAO_REST_KEY : ${{secrets.VITE_KAKAO_REST_KEY}}
+         VITE_KAKAO_REDIRECT_URI : ${{secrets.VITE_KAKAO_REDIRECT_URI}}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
