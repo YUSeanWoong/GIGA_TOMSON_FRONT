@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "GIGA_TOMSON_FRONT/dist",
+    "public": "/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
