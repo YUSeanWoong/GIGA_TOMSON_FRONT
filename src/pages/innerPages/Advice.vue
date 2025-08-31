@@ -1,5 +1,12 @@
 <template>
   <div>
+    <!-- 날짜 바 (중앙 정렬, 깔끔 스타일) -->
+  <div class="advice-date-bar">
+  <button class="date-nav prev" aria-label="이전 날짜"></button>
+  <div class="date-label">{{ year }}년 {{ month }}월 {{ day }}일</div>
+  <button class="date-nav next" aria-label="다음 날짜"></button>
+  </div>
+
     <!-- 이미지 및 좌우 버튼 -->
     <div class="image-container">
       <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button>
@@ -17,6 +24,19 @@
 <script setup>
 import { ref } from 'vue'
 
+// ---- 날짜: URL ?date=YYYY-MM-DD 있으면 사용, 없으면 오늘 ----
+function getSelectedDate() {
+  const raw = new URLSearchParams(window.location.search).get('date') // e.g. 2025-08-10
+  const d = raw ? new Date(raw) : new Date()
+  return isNaN(d) ? new Date() : d
+}
+const _d = getSelectedDate()
+const year = _d.getFullYear()
+const month = _d.getMonth() + 1
+const day = _d.getDate()
+const weekday = ['일','월','화','수','목','금','토'][_d.getDay()]
+
+// ---- 기존 코드 그대로 ----
 // 이미지 여러 개 import
 import gigaChad1 from '../../images/GIGA_TOMSON.png'
 import gigaChad2 from '../../images/GIGA_TOMSON2.jpg'
@@ -35,18 +55,11 @@ const descriptions = ref([
   "세 번째 GIGA CHAD: 끝까지 밀어붙이면 진짜 기가챠드."
 ])
 
-// 이전 이미지
-const prevImage = () => {
-  if (currentIndex.value > 0) currentIndex.value--
-}
+// 이전/다음 이미지
+const prevImage = () => { if (currentIndex.value > 0) currentIndex.value-- }
+const nextImage = () => { if (currentIndex.value < images.value.length - 1) currentIndex.value++ }
 
-// 다음 이미지
-const nextImage = () => {
-  if (currentIndex.value < images.value.length - 1) currentIndex.value++
-}
-
-// 상단 버튼 기능
+// 상단 버튼(필요하면 사용)
 const goBack = () => alert("뒤로가기 클릭")
 const closePage = () => alert("닫기 클릭")
 </script>
-
