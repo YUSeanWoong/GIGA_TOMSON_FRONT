@@ -16,7 +16,7 @@
 
       <!-- 하단 메뉴 -->
       <nav class="footer-menu">
-        <button @click="$router.push('/calendar')">캘린더</button>
+        <button @click="$router.push('/calandar')">캘린더</button>
         <button @click="$router.push('/report')">보고</button>
         <button @click="$router.push('/advice')">조언</button>
         <button @click="$router.push('/shop')">상점</button>

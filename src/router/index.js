@@ -29,9 +29,9 @@ const routes = [
     component: LayoutPage,
     children: [
       { path: '', redirect: '/Login' }, // 기본 진입
-      { path: 'calendar', component: CalanderPage, meta: { requiresAuth: true } },
-      { path: 'report', component: ReportPage, meta: { requiresAuth: true } },
-      { path: 'advice', component: AdvicePage, meta: { requiresAuth: true }  },
+      { path: 'calandar', component: CalanderPage, meta: { requiresAuth: false } },
+      { path: 'report', component: ReportPage, meta: { requiresAuth: false } },
+      { path: 'advice', component: AdvicePage, meta: { requiresAuth: false }  },
       { path: 'oauth/callback', component: KakaoCallback },
       //{ path: 'shop', component: ShopPage },
     ],
