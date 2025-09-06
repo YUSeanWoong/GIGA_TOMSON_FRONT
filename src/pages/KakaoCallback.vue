@@ -25,7 +25,11 @@ onMounted(async () => {
     router.replace('/login')
     return
   }
-
+  if (sessionStorage.getItem('processed_kakao_code') === code) {
+    console.warn('이미 처리한 code, 무시:', code)
+    return
+  }
+  sessionStorage.setItem('processed_kakao_code', code)
   
   try {
  
@@ -37,7 +41,7 @@ onMounted(async () => {
       // }
     )
 
-    
+
     const { accessToken, refreshToken } = res.data
     localStorage.setItem('gt_access_token', accessToken)
     if (refreshToken) localStorage.setItem('gt_refresh_token', refreshToken)
