@@ -37,6 +37,7 @@ onMounted(async () => {
       // }
     )
 
+    
     const { accessToken, refreshToken } = res.data
     localStorage.setItem('gt_access_token', accessToken)
     if (refreshToken) localStorage.setItem('gt_refresh_token', refreshToken)
