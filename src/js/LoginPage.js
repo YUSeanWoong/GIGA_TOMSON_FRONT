@@ -16,7 +16,6 @@ export function useLoginPage() {
     const REST_KEY = import.meta.env.VITE_KAKAO_REST_KEY;
     const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI; // 예: http://localhost/oauth/callback
     
-
     
       if (!REST_KEY || !REDIRECT_URI) {
         alert('환경변수(VITE_KAKAO_REST_KEY, VITE_KAKAO_REDIRECT_URI)가 누락되었습니다.');
