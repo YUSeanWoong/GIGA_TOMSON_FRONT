@@ -26,15 +26,15 @@ onMounted(async () => {
     return
   }
 
-
+  
   try {
  
     const res = await axios.post(
-      `${import.meta.env.VITE_API_BASE}/auth/kakao/exchange?code=${code}`
-      // {
-      //   code,
-      //   redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI
-      // }
+      `${import.meta.env.VITE_API_BASE}/auth/kakao/exchange?code=${code}`,
+      {
+        code,
+        redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI
+      }
     )
 
     const { accessToken, refreshToken } = res.data
