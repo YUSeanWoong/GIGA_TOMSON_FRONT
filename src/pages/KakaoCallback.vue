@@ -31,6 +31,7 @@ onMounted(async () => {
   }
   sessionStorage.setItem('processed_kakao_code', code)
   
+  
   try {
  
     const res = await axios.post(
