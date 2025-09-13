@@ -1219,20 +1219,6 @@ input {
 }
 
 
-/* ===== 날짜 바 - 점선/화살표 제거 + 중앙 정렬 ===== */
-.sub_cont .advice-date-bar::before { content: none !important; }  /* 점선 제거 */
-.sub_cont .advice-date-bar .date-nav { display: none !important; } /* 좌/우 버튼 숨김 */
-
-/* 좌우 버튼 없으니 단일 컬럼으로 재배치해 완전 중앙 정렬 */
-.sub_cont .advice-date-bar{
-  grid-template-columns: 1fr !important;
-  justify-items: center;
-}
-.sub_cont .advice-date-bar .date-label{
-  text-align: center;
-}
-
-
 /* 요일 헤더: 토/일 빨간색 (헤더 텍스트만) */
 .sub_cont .weekdays .weekday:nth-child(1),  /* 일 */
 .sub_cont .weekdays .weekday:nth-child(7) { /* 토 */
@@ -1415,6 +1401,7 @@ input {
   box-sizing: border-box;          /* 넘침 방지 */
   vertical-align: middle;
 }
+
 
 
 
