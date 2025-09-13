@@ -4,28 +4,25 @@
     <div class="advice-date-bar">
       
       <!-- 왼쪽: 보고 버튼 -->
-      <div class="date-left">
-        <button
-          class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 transition"
-          @click="goReport"
+      <div>
+        <button @click="goReport"
           aria-label="보고 화면으로 이동"
-        >
-          <!-- 문서 아이콘 -->
+          class="document-icon-button" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 text-gray-700"
-            fill="none"
+            width="100%"
+            height="100%"
             viewBox="0 0 24 24"
+            fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <!-- 문서 테두리 -->
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M7 4h10a2 2 0 012 2v12a2 2 0 
-                     01-2 2H7a2 2 0 01-2-2V6a2 2 0 
-                     012-2z"/>
-            <!-- 문서 줄 3개 -->
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 8h6M9 12h6M9 16h4"/>
+            <rect x="6" y="4" width="12" height="16" rx="2" ry="2" />
+            <line x1="8" y1="8" x2="16" y2="8" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+            <line x1="8" y1="16" x2="14" y2="16" />
           </svg>
         </button>
       </div>
