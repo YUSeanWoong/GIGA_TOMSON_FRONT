@@ -8,11 +8,11 @@ export async function evaluateDay(data) {
 export async function askAdvice(data) {
     try {
     //const res = await axios.post("http://localhost/ai_api/ask", data);
-    const res = await axios.post("https://api.gigatomson.shop/ai_api/ask", data);
-
+    const res = await axios.post("https://api.gigatomson.shop/ai_api/ask", data,{ headers: { "Content-Type": "application/json" } });
+    console.log(">>>response:",res.data);
     return res.data; // { percent, advice_msg }
     } catch (err) {
-    console.error("AI 요청 실패:", err);
+    console.error(">>> axios error:", err.response?.status, err.response?.data);
     throw err;
     }
 }
