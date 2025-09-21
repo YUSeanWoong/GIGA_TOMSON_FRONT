@@ -45,28 +45,31 @@
 
     <!-- 설명 텍스트 -->
     <div class="description">
-      <p>{{ descriptions[currentIndex] }}</p>
+        <template v-if="adviceMsg">
+        <h3>오늘 성취율: {{ percent }}%</h3>
+        <p>{{ adviceMsg }}</p>
+      </template>
+      <template v-else>
+        <p>오늘 활동을 보고탭에서 기록해보라고 짜식아</p>
+      </template>      
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
-function getSelectedDate() {
-  const raw = new URLSearchParams(window.location.search).get('date')
-  const d = raw ? new Date(raw) : new Date()
-  return isNaN(d) ? new Date() : d
-}
-const _d = getSelectedDate()
-const year = _d.getFullYear()
-const month = _d.getMonth() + 1
-const day = _d.getDate()
-
+import { useRoute } from "vue-router"
 import gigaChad1 from '../../images/GIGA_TOMSON.png'
 import gigaChad2 from '../../images/GIGA_TOMSON2.jpg'
 import gigaChad3 from '../../images/GIGA_TOMSON3.jpg'
 
+const route = useRoute()
+const percent = route.query.percent
+const adviceMsg = route.query.msg
+const _d = getSelectedDate()
+const year = _d.getFullYear()
+const month = _d.getMonth() + 1
+const day = _d.getDate()
 const currentIndex = ref(0)
 const images = ref([gigaChad1, gigaChad2, gigaChad3])
 const descriptions = ref([
@@ -74,11 +77,23 @@ const descriptions = ref([
   "두 번째 GIGA CHAD: 집중력이 필요할 땐 잠깐 숨을 고르자.",
   "세 번째 GIGA CHAD: 끝까지 밀어붙이면 진짜 기가챠드."
 ])
-
 const prevImage = () => { if (currentIndex.value > 0) currentIndex.value-- }
 const nextImage = () => { if (currentIndex.value < images.value.length - 1) currentIndex.value++ }
 
 const goReport = () => {
   console.log("보고 화면으로 이동 예정")
 }
+
+
+function getSelectedDate() {
+  const raw = new URLSearchParams(window.location.search).get('date')
+  const d = raw ? new Date(raw) : new Date()
+  return isNaN(d) ? new Date() : d
+}
+
+
+
+
+
+
 </script>

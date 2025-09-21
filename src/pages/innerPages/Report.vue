@@ -56,30 +56,42 @@
   <button class="add" @click="addTask">+ 활동 추가</button>
 
   <!-- 완료 버튼 -->
-  <button class="complete" @click="noop">완료</button>
+  <button class="complete" @click="handleComplete">완료</button>
 
 </template>
 
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { sendAdvice } from '@/js/Report.js'
+import { useRouter } from "vue-router"
 
-
+const router = useRouter()
+const mode = ref("")
+const adviceResult = ref({ percent: null, advice_msg: "" })
 const date = ref('2025-08-17')
 const tasks = ref([
   { name: '공부', hour: 0, min: 0 },
   { name: '업무', hour: 0, min: 0 },
   { name: '자기계발', hour: 0, min: 0 },
-  { name: '독서', hour: 0, min: 0 },
-  { name: '운동', hour: 0, min: 0 },
-  { name: '유튜브', hour: 0, min: 0 },
-  { name: '집안일', hour: 0, min: 0 },
-  { name: '수면', hour: 0, min: 0 },
-  { name: '친구', hour: 0, min: 0 }, 
-  { name: '게임', hour: 0, min: 0 },
+  { name: '독서', hour: 0, min: 0 }
 ])
 
-const activitiesContainer = ref(null)
+const handleComplete = async () => {
+  const res = await sendAdvice({
+    tasks: tasks.value,
+    date: date.value,
+    mode: mode.value,
+    router
+  })
+  adviceResult.value = res
+}
 
+
+
+const activitiesContainer = ref(null)
+// const setPopoverRef = (el) => {
+//   popoverEl.value = el
+// }
 /* ===== 팝오버 상태 ===== */
 const activeIndex   = ref(null)          // 열려 있는 행 index
 const draft         = ref({ hour: 0, min: 0 })
@@ -130,8 +142,12 @@ const applyTime = () => {
 
 /* 바깥 클릭/ESC로 닫기 */
 const onDocClick = (e) => {
+
+  
   if (!popoverEl.value) { activeIndex.value = null; return }
-  if (!popoverEl.value.contains(e.target)) activeIndex.value = null
+  if (popoverEl.value instanceof HTMLElement && !popoverEl.value.contains(e.target)) {
+    activeIndex.value = null
+  }
 }
 const onKey = (e) => { if (e.key === 'Escape') closeTime() }
 

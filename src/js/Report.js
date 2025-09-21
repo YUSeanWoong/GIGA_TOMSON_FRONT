@@ -14,3 +14,32 @@ export async function askAdvice(data) {
     throw err;
     }
 }
+
+
+export async function sendAdvice({ tasks, date, mode,router}) {
+  // tasks → activities 변환
+    const activities = {}
+    for (const t of tasks) {
+    activities[t.name] = t.hour + t.min / 60
+    }
+    const payload = {
+    date,
+    mode,
+    activities
+    }
+    try {
+    console.log(payload)
+    const res = await askAdvice(payload)
+    console.log("AI 응답:", res)
+    router.push({
+    path: '/advice',
+    query: { 
+        percent: res.percent, 
+        msg: res.advice_msg 
+    }
+    })
+    return res
+} catch (err) {
+    console.error("AI 요청 실패:", err)
+}
+}
