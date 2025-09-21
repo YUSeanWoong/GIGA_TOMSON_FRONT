@@ -65,12 +65,18 @@ import gigaChad3 from '../../images/GIGA_TOMSON3.jpg'
 import good1 from '../../images/good_1.png'
 import good2 from '../../images/good_2.png'
 import good3 from '../../images/good_3.png'
+import good4 from '../../images/good_4.png'
+import good5 from '../../images/good_5.png'
 import soso1 from '../../images/soso_1.png'
 import soso2 from '../../images/soso_2.png'
 import soso3 from '../../images/soso_3.png'
+import soso4 from '../../images/soso_4.png'
+import soso5 from '../../images/soso_5.png'
 import bad1 from '../../images/bad_1.png'
 import bad2 from '../../images/bad_2.png'
 import bad3 from '../../images/bad_3.png'
+import bad4 from '../../images/bad_4.png'
+import bad5 from '../../images/bad_5.png'
 import mainImage from '../../images/main.png'
 
 const route = useRoute()
@@ -83,9 +89,9 @@ const month = _d.getMonth() + 1
 const day = _d.getDate()
 
 // 이미지 그룹
-const goodImages = [good1, good2, good3]
-const sosoImages = [soso1, soso2, soso3]
-const badImages  = [bad1, bad2, bad3]
+const goodImages = [good1, good2, good3, good4, good5]
+const sosoImages = [soso1, soso2, soso3, soso4, soso5]
+const badImages  = [bad1, bad2, bad3, bad4, bad5]
 
 let selectedImage = mainImage
 
