@@ -8,7 +8,7 @@ export async function evaluateDay(data) {
 export async function askAdvice(data) {
     try {
     //const res = await axios.post("http://localhost/ai_api/ask", data);
-    const res = await axios.post("http://gigatomson.shop/ai_api/ask", data);
+    const res = await axios.post("https://gigatomson.shop/ai_api/ask", data);
 
     return res.data; // { percent, advice_msg }
     } catch (err) {
