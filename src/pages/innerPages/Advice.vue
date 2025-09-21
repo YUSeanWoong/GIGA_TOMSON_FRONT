@@ -38,9 +38,9 @@
 
     <!-- 이미지 및 좌우 버튼 -->
     <div class="image-container">
-      <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button>
-      <img :src="images[currentIndex]" alt="Giga Chad" class="chad-image" />
-      <button @click="nextImage" class="nav-btn right" :disabled="currentIndex === images.length - 1">›</button>
+      <!-- <button @click="prevImage" class="nav-btn left" :disabled="currentIndex === 0">‹</button> -->
+      <img :src="image" alt="Advice Result" class="chad-image" />
+      <!-- <button @click="nextImage" class="nav-btn right" :disabled="currentIndex === images.length - 1">›</button> -->
     </div>
 
     <!-- 설명 텍스트 -->
@@ -62,21 +62,48 @@ import { useRoute } from "vue-router"
 import gigaChad1 from '../../images/GIGA_TOMSON.png'
 import gigaChad2 from '../../images/GIGA_TOMSON2.jpg'
 import gigaChad3 from '../../images/GIGA_TOMSON3.jpg'
+import good1 from '../../images/good_1.png'
+import good2 from '../../images/good_2.png'
+import good3 from '../../images/good_3.png'
+import soso1 from '../../images/soso_1.png'
+import soso2 from '../../images/soso_2.png'
+import soso3 from '../../images/soso_3.png'
+import bad1 from '../../images/bad_1.png'
+import bad2 from '../../images/bad_2.png'
+import bad3 from '../../images/bad_3.png'
+import mainImage from '../../images/main.png'
 
 const route = useRoute()
-const percent = route.query.percent
-const adviceMsg = route.query.msg
+const percent = route.query.percent ? Number(route.query.percent) : null
+const adviceMsg = route.query.msg || null
+
 const _d = getSelectedDate()
 const year = _d.getFullYear()
 const month = _d.getMonth() + 1
 const day = _d.getDate()
+
+// 이미지 그룹
+const goodImages = [good1, good2, good3]
+const sosoImages = [soso1, soso2, soso3]
+const badImages  = [bad1, bad2, bad3]
+
+let selectedImage = mainImage
+
+if (percent !== null) {
+  if (percent >= 90) {
+    selectedImage = goodImages[Math.floor(Math.random() * goodImages.length)]
+  } else if (percent >= 70) {
+    selectedImage = sosoImages[Math.floor(Math.random() * sosoImages.length)]
+  } else {
+    selectedImage = badImages[Math.floor(Math.random() * badImages.length)]
+  }
+}
+
+const image = ref(selectedImage)
+
 const currentIndex = ref(0)
 const images = ref([gigaChad1, gigaChad2, gigaChad3])
-const descriptions = ref([
-  "첫 번째 GIGA CHAD: 오늘도 워밍업은 충분히 했는가?",
-  "두 번째 GIGA CHAD: 집중력이 필요할 땐 잠깐 숨을 고르자.",
-  "세 번째 GIGA CHAD: 끝까지 밀어붙이면 진짜 기가챠드."
-])
+
 const prevImage = () => { if (currentIndex.value > 0) currentIndex.value-- }
 const nextImage = () => { if (currentIndex.value < images.value.length - 1) currentIndex.value++ }
 

@@ -21,9 +21,18 @@ export async function askAdvice(data) {
 export async function sendAdvice({ tasks, date, mode,router}) {
   // tasks → activities 변환
     const activities = {}
+    let totalMinutes = 0
+
     for (const t of tasks) {
+    const minutes = t.hour * 60 + t.min
+    totalMinutes += minutes        
     activities[t.name] = t.hour + t.min / 60
     }
+
+  if (totalMinutes > 24 * 60) {
+    alert("일일 기록이 24시간을 넘을 수 없습니다")
+    return
+    }    
     const payload = {
     date,
     mode,
