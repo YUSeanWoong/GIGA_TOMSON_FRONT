@@ -57,10 +57,12 @@
 
   <!-- 완료 버튼 -->
   <button class="complete" @click="noop">완료</button>
+
 </template>
 
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+
 
 const date = ref('2025-08-17')
 const tasks = ref([
