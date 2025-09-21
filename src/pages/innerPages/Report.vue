@@ -19,7 +19,11 @@
       class="task"
       :ref="el => setTaskRef(i, el)"
     >
-      <span class="name">{{ task.name }}</span>
+      <select v-model="task.name" class="category-select">
+        <option v-for="c in categories" :key="c" :value="c">
+          {{ c }}
+        </option>
+      </select>
 
       <!-- 시간 클릭 → 팝오버 열기 (클릭 위치 기준) -->
       <span class="time" @click.stop="openTime(i, $event)">
@@ -65,6 +69,9 @@ import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { sendAdvice } from '@/js/Report.js'
 import { useRouter } from "vue-router"
 
+
+
+const categories = ref(["공부", "업무", "자기계발", "독서", "운동", "집안일", "친목", "유튜브", "수면", "게임"]) 
 const router = useRouter()
 const mode = ref("")
 const adviceResult = ref({ percent: null, advice_msg: "" })
@@ -162,7 +169,7 @@ onBeforeUnmount(() => {
 
 /* 기존 기능 */
 const addTask = async () => {
-  tasks.value.push({ name: '새 활동', hour: 0, min: 1 })
+  tasks.value.push({ name: categories.value[0], hour: 0, min: 0 })
   await nextTick()
   activitiesContainer.value.scrollTop = activitiesContainer.value.scrollHeight
 }
@@ -240,4 +247,42 @@ const noop = () => {}
   background:#111; color:#fff; border:none;
   border-radius:8px; padding:6px 12px; font-size:13px; cursor:pointer;
 }
+
+/* 카테고리 박스 */
+.category-select {
+  appearance: none;          /* 기본 브라우저 화살표 제거 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #fff;
+  border: 1px solid #d1d5db; /* Tailwind gray-300 */
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #111;
+
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-width: 100px;
+}
+
+/* hover 효과 */
+.category-select:hover {
+  border-color: #2563eb;     /* 파란색 강조 */
+}
+
+/* focus 효과 */
+.category-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* 파란 그림자 */
+}
+
+/* option 스타일 */
+.category-select option {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+
 </style>
