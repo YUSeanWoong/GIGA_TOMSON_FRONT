@@ -36,6 +36,7 @@ onMounted(async () => {
 
   // 4. 백엔드 서버에 인가 코드 전송
   try {
+    console.log(`${import.meta.env.VITE_API_BASE}/auth/kakao/exchange`);
     const res = await axios.post(`${import.meta.env.VITE_API_BASE}/auth/kakao/exchange`, {
       code: code,
       redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI
