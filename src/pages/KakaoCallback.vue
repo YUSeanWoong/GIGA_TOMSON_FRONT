@@ -36,16 +36,17 @@ onMounted(async () => {
 
   // 4. 백엔드 서버에 인가 코드 전송
   try {
-    console.log(`${import.meta.env.VITE_API_BASE}/auth/kakao/exchange`);
     const res = await axios.post(`${import.meta.env.VITE_API_BASE}/auth/kakao/exchange`, {
       code: code,
       redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI
     })
-
+console.log('111111111111111111111111');
     const { accessToken, refreshToken } = res.data
+    console.log('22222222222222222');
     localStorage.setItem('gt_access_token', accessToken)
+    console.log('333333333333333333');
     if (refreshToken) localStorage.setItem('gt_refresh_token', refreshToken)
-
+console.log('44444444444444444');
     router.replace('/advice')
   } catch (e) {
     console.error('로그인 실패:', e)
