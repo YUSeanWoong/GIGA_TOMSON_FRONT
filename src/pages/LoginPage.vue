@@ -9,12 +9,12 @@
       </div>
 
       <form class="form" @submit.prevent>
-        <input type="text" placeholder="아이디" v-model="id" />
+       <!--<input type="text" placeholder="아이디" v-model="id" />
         <input type="password" placeholder="비밀번호" v-model="pw" />
 
         
 
-       <!--<div class="links">
+       <div class="links">
           <button type="button" @click="noop">아이디 찾기</button>
           <button type="button" @click="noop">비밀번호 찾기</button>
           <button type="button" @click="goSignUp">회원가입</button>
