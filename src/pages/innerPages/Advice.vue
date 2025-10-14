@@ -43,6 +43,7 @@
       <!-- <button @click="nextImage" class="nav-btn right" :disabled="currentIndex === images.length - 1">›</button> -->
     </div>
 
+    
     <!-- 설명 텍스트 -->
     <div class="description">
         <template v-if="adviceMsg">
